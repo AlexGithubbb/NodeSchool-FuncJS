@@ -1,5 +1,5 @@
 /*
-Write a function duckCount that returns the number of arguments passed to it which have a property 'quack' defined directly on them.Do not match values inherited from prototypes.
+Write a function duckCount that returns the number of arguments passed to it which have a property 'quack' defined directly on them.Do not match values inherited from prototypes.( Object.getPrototypeOf(obj) === Object.prototype )
 */
 
 // duck = {
@@ -28,17 +28,21 @@ Write a function duckCount that returns the number of arguments passed to it whi
 
 // console.log(Object.prototype.hasOwnProperty.call(duck, 'quack')); // true
 
-// function duckCount() {
-//   return Array.prototype.slice
-//     .call(arguments)
-//     .filter(obj => Object.prototype.hasOwnProperty.call(obj, 'quack')).length;
-// }
+// OS
+function duckCount() {
+  return (
+    Array.prototype.slice
+      .call(arguments) // copy the objet into a array use Array.prototype.slice.call(arguments)
+      // filter out those objects has property 'quack'
+      .filter(obj => Object.prototype.hasOwnProperty.call(obj, 'quack')).length
+  );
+}
 
-// module.exports = duckCount;
+module.exports = duckCount;
 
-const array = Array.prototype.arguments.slice.call(arguments); // make the object into a array
+// const array = Array.prototype.arguments.slice.call(arguments); // make the object into a array
 
-// returns
-array.filter(obj => {
-  return Object.prototype.hasOwnProperty.call(obj, 'quack');
-}).length;
+// // returns the length of those obj has property 'quack'
+// array.filter(obj => {
+//   return Object.prototype.hasOwnProperty.call(obj, 'quack');
+// }).length;
